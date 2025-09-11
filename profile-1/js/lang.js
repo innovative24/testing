@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const err = (...a) => console.error("[i18n]", ...a);
 
   // 目前語言：統一用這個變數
-  let currentLang = "zh";
+  let currentLang = "en";
 
   // 取得初始語言（網址 > localStorage > 瀏覽器語系）
   const params = new URLSearchParams(location.search);
