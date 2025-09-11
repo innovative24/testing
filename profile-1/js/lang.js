@@ -1,65 +1,94 @@
+// /js/lang.js
+document.addEventListener("DOMContentLoaded", () => {
+  const log = (...a) => console.log("[i18n]", ...a);
+  const err = (...a) => console.error("[i18n]", ...a);
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const qs = new URLSearchParams(location.search);
-  const fromQS = qs.get("lang");
+  // 目前語言：統一用這個變數
+  let currentLang = "zh";
+
+  // 取得初始語言（網址 > localStorage > 瀏覽器語系）
+  const params = new URLSearchParams(location.search);
+  const fromQS = params.get("lang");
   const fromLS = localStorage.getItem("lang");
   const guess  = (navigator.language || "zh").toLowerCase().startsWith("zh") ? "zh" : "en";
-  let lang = fromQS || fromLS || guess;
+  currentLang = fromQS || fromLS || guess;
 
-  const apply = (dict) => {
-    // 一般文字
+  async function loadDict(code){
+    const url = `./lang/${code}.json?v=${Date.now()}`; // 相對路徑最安全（GitHub Pages 子路徑OK）
+    log("loading", url);
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+    return res.json();
+  }
+
+  function applyDict(dict){
+    let changed = 0;
+
+    // 文字節點
     document.querySelectorAll("[data-i18n]").forEach(el => {
       const key = el.dataset.i18n;
-      if (dict[key] != null) el.textContent = dict[key];
+      if (dict[key] != null) { el.textContent = dict[key]; changed++; }
     });
-    // 屬性翻譯（例如 placeholder）
+
+    // 屬性翻譯（placeholder / aria-label 等）
     document.querySelectorAll("[data-i18n-attr]").forEach(el => {
       const attrs = el.dataset.i18nAttr.split(",").map(s => s.trim());
       const key = el.dataset.i18n;
       if (dict[key] == null) return;
       attrs.forEach(a => el.setAttribute(a, dict[key]));
+      changed++;
     });
-    // <title> 與 <meta name="description">
-    if (dict.page_title) document.title = dict.page_title;
+
+    // <title> / <meta name="description">
+    if (dict.page_title){ document.title = dict.page_title; changed++; }
     if (dict.page_desc){
       let m = document.querySelector('meta[name="description"]');
-      if (!m) { m = document.createElement("meta"); m.setAttribute("name","description"); document.head.appendChild(m); }
+      if(!m){ m = document.createElement("meta"); m.setAttribute("name","description"); document.head.appendChild(m); }
       m.setAttribute("content", dict.page_desc);
+      changed++;
     }
-  };
 
-  async function loadAndApply(nextLang){
+    log(`applied: ${changed} node(s) updated`);
+  }
+
+  function updateLangButtons(){
+    document.querySelectorAll("[data-setlang]").forEach(b => {
+      const active = b.dataset.setlang === currentLang;
+      b.classList.toggle("active", active);
+      b.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  }
+
+  async function setLang(next){
     try{
-      const res = await fetch(`./lang/${nextLang}.json?v=${Date.now()}`);
-      const dict = await res.json();
-      lang = nextLang;
-      localStorage.setItem("lang", lang);
-      // 更新網址參數但不重整
+      const dict = await loadDict(next);
+      applyDict(dict);
+
+      // 成功後才更新目前語言 + 狀態
+      currentLang = next;
+      localStorage.setItem("lang", currentLang);
+      updateLangButtons();
+
+      // 更新網址但不重整
       const url = new URL(location.href);
-      url.searchParams.set("lang", lang);
+      url.searchParams.set("lang", currentLang);
       history.replaceState(null, "", url.toString());
-      apply(dict);
-      // 切換鈕的 active 樣式
-      document.querySelectorAll("[data-setlang]").forEach(b => {
-        b.classList.toggle("active", b.dataset.setlang === lang);
-      });
+
+      log("language set to", currentLang);
     }catch(e){
-      console.error("載入語言包失敗", e);
+      err("failed to set language:", e);
     }
   }
 
-  // 綁定切換鈕
+  // 綁定切換（按鈕）
   document.querySelectorAll("[data-setlang]").forEach(btn => {
-    btn.addEventListener("click", () => loadAndApply(btn.dataset.setlang));
+    btn.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      const next = btn.dataset.setlang;
+      setLang(next);
+    });
   });
 
   // 首次載入
-  loadAndApply(lang);
-});
-
-// 高亮目前語言 & 同步 aria-pressed
-document.querySelectorAll("[data-setlang]").forEach(b => {
-  const isActive = b.dataset.setlang === lang;
-  b.classList.toggle("active", isActive);
-  b.setAttribute("aria-pressed", isActive ? "true" : "false");
+  setLang(currentLang);
 });
