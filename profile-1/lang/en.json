@@ -49,7 +49,7 @@
   "demos_landscape": "📺 Full Project Demo (16:9)",
   "demos_shorts": "📱 Shorts (9:16)",
   
-  "demos_16:9title-1":"Demo",
+  "demos_16:9title-1":"Demo Video",
   "demos_16:9desc-1":"Demonstrates virtual shed integration and complete project process. ",
   "demos_9:16title-1":"Digital Twin--Chinese",
   "demos_9:16desc-1":"TTS voice and mouth shape correspondence demonstration. ",
@@ -72,6 +72,7 @@
   "rights": "All rights reserved.",
   "back_to_top": "Back to top"
 }
+
 
 
 
