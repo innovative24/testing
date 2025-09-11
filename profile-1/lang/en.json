@@ -1,0 +1,74 @@
+{
+  "page_title": "Andy｜Virtual studio integration with TV station|Digital human video",
+  "page_desc": "Andy－Systems Engineer. virtual studio and TV integration expert; Undertake digital human video and one-stop construction。",
+
+  "nav_menu": "menu",
+  "nav_about": "About me",
+  "nav_projects": "represents the project",
+  "nav_content": "program experience",
+  "nav_demos": "Demo Video",
+  "nav_services": "Service Plan",
+  "nav_contact": "contact",
+
+  "hero_title": "Virtual Studio × TV Integration|Digital Human Video Solution",
+  "hero_subtitle": "I'm Andy, a systems engineer. One-stop construction of TV stations/campus stations: demand planning→ equipment selection → system integration → training online; and undertake digital human videos (mouth shape integration + 3D virtual scenes).",
+  "cta_view_projects": "See representative projects",
+  "cta_contact": "Negotiate cooperation",
+
+  "about_title": "About me",
+  "about_body": "Identity: System Engineer. Areas of expertise: Integration of virtual studios and TV stations; Familiarity with Switcher/Router/Keying/Tracking/NDI/SDI/IP. Capability focus: AI-assisted development (HTML / CSS / system tools) to quickly implement requirements into operational solutions and SOPs. ",
+
+  "projects_title": "Represents the project",
+  "p1_title": "TV station construction",
+  "p1_desc": "Integrate SDI/NDI processes, keying, and tracking, complete planning and system integration, and deliver SOPs and training。",
+  "p2_title": "Campus TV station",
+  "p2_desc": "Establish standardized implementation templates and training processes for teaching materials to shorten start-up time and improve operability。",
+  "p3_title": "Avatar 24/7 with nobody",
+  "p3_desc": "TTS voice + lip sync + automatic carousel scheduling, which can be automatically played 24/7 during the event, reducing labor costs." ,
+
+  "tag_ndisdi": "NDI/SDI/IP",
+  "tag_keying": "Keying",
+  "tag_tracking": "Tracking",
+  "tag_sop": "SOP",
+  "tag_edu": "educational field",
+  "tag_template": "import template",
+  "tag_training": "training",
+  "tag_tts": "TTS",
+  "tag_lipsync": "lip sync",
+  "tag_automation": "automation",
+
+  "content_title": "Program experience",
+  "content_edit_title": "Editing production",
+  "content_crow": "【烏鴉笑笑】",
+  "content_cross": "【兩岸三觀】",
+  "content_ep_title": "Executive production",
+  "content_heho": "【heho】",
+
+  "demos_title": "Demo video",
+  "demos_subtitle": "Full Project Demo (16:9) & Shorts (9:16)。",
+  "demos_landscape": "📺 Full Project Demo (16:9)",
+  "demos_shorts": "📱 Shorts (9:16)",
+  
+  "demos_16:9title-1":"專案 Demo",
+  "demos_16:9desc-1":"Demonstrates virtual shed integration and complete project process. ",
+  "demos_9:16title-1":"Digital Twin--Chinese",
+  "demos_9:16desc-1":"TTS voice and mouth shape correspondence demonstration. ",
+  "demos_9:16title-2":"Digital Twin - Cantonese",
+  "demos_9:16desc-2":"Digital human display in a vertical short film. "
+  
+  "services_title": "service plan",
+  "svc_dh_title": "Digital Human Video",
+  "svc_dh_desc": "AI lip sync + TTS sound + 3D virtual scene." ,
+  "svc_broadcast_title": "TV Station/Campus Station Integration",
+  "svc_broadcast_desc": "SDI/NDI/IP、Keying、Tracking、Director process construction。 ",
+  "svc_proto_title": "Fast delivery",
+  "svc_proto_desc": "Available version within 5 days to help with quick verification and implementation." ,
+  "svc_sales_title": "Equipment sales",
+  "svc_sales_desc": "Broadcast-grade equipment and peripherals, quoted and installed according to needs." ,
+
+  "contact_title": "Contact me",
+  "contact_email": "Email：",
+  "contact_whatsapp": "Whatsapp",
+  "rights": "All rights reserved.",
+  "back_to_top": "Back to top"
+}
