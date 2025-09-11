@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(location.search);
   const fromQS = params.get("lang");
   const fromLS = localStorage.getItem("lang");
-  const guess  = (navigator.language || "zh").toLowerCase().startsWith("zh") ? "zh" : "en";
+  const guess  = (navigator.language || "en").toLowerCase().startsWith("en") ? "zh" : "en";
   currentLang = fromQS || fromLS || guess;
 
   async function loadDict(code){
