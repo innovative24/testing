@@ -1,0 +1,67 @@
+{
+  "page_title": "Andy | Virtual Studio & Broadcast Integration | Digital Human",
+  "page_desc": "Andy — System Engineer at Leader Digital Tech (Taiwan). Expert in virtual studio & broadcast integration. Digital human videos and one-stop TV/campus station builds.",
+
+  "nav_menu": "Menu",
+  "nav_about": "About",
+  "nav_projects": "Projects",
+  "nav_content": "Content",
+  "nav_demos": "Demos",
+  "nav_services": "Services",
+  "nav_contact": "Contact",
+
+  "hero_title": "Virtual Studio × Broadcast Integration | Digital Human Solutions",
+  "hero_subtitle": "I'm Andy, the sole System Engineer at Leader Digital Tech Taiwan. One-stop TV/Campus station builds, plus Digital Human videos (lip-sync + 3D scenes).",
+  "cta_view_projects": "View Projects",
+  "cta_contact": "Contact Me",
+
+  "about_title": "About",
+  "about_body": "Role: System Engineer & sole staff at Leader Digital Tech (Taiwan). Expertise: Virtual studio & broadcast integration; hands-on with Switcher/Router/Keying/Tracking/NDI/SDI/IP. Uses AI tools (HTML/CSS/system) to ship reliable SOP-based solutions.",
+
+  "projects_title": "Projects",
+  "p1_title": "iSmart Broadcast Station",
+  "p1_desc": "Integrated SDI/NDI flow with keying & tracking, delivered SOPs and training.",
+  "p2_title": "Campus TV Station",
+  "p2_desc": "Standardized rollout with training materials to shorten time-to-air.",
+  "p3_title": "Digital Human 24/7 Autopilot",
+  "p3_desc": "TTS voice + lip-sync + auto playlist scheduling to cut op cost.",
+
+  "tag_ndisdi": "NDI/SDI/IP",
+  "tag_keying": "Keying",
+  "tag_tracking": "Tracking",
+  "tag_sop": "SOP",
+  "tag_edu": "Education",
+  "tag_template": "Templates",
+  "tag_training": "Training",
+  "tag_tts": "TTS",
+  "tag_lipsync": "Lip-sync",
+  "tag_automation": "Automation",
+
+  "content_title": "Content Works",
+  "content_edit_title": "Video Editing",
+  "content_crow": "“Crow Smile”",
+  "content_cross": "“Three Views”",
+  "content_ep_title": "Executive Producer",
+  "content_heho": "“heho”",
+
+  "demos_title": "Demo Videos",
+  "demos_subtitle": "Full-width demos (16:9) and Shorts (9:16).",
+  "demos_landscape": "📺 Full Demos (16:9)",
+  "demos_shorts": "📱 Shorts (9:16)",
+
+  "services_title": "Services",
+  "svc_dh_title": "Digital Human Video",
+  "svc_dh_desc": "Lip-sync + TTS voice + 3D scenes",
+  "svc_broadcast_title": "Broadcast/Campus Integration",
+  "svc_broadcast_desc": "SDI/NDI/IP, keying, tracking, live workflow",
+  "svc_proto_title": "Rapid Prototype",
+  "svc_proto_desc": "Demo in 5 days",
+  "svc_sales_title": "Equipment Sales",
+  "svc_sales_desc": "Quotes & supply for Leader products",
+
+  "contact_title": "Contact",
+  "contact_email": "Email: ",
+  "contact_whatsapp": "Whatsapp: ",
+  "rights": "All rights reserved.",
+  "back_to_top": "Back to top"
+}
