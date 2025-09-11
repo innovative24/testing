@@ -2,11 +2,11 @@
   "page_title": "Andy｜Virtual studio integration with TV station|Digital human video",
   "page_desc": "Andy－Systems Engineer. virtual studio and TV integration expert; Undertake digital human video and one-stop construction。",
 
-  "nav_menu": "menu",
+  "nav_menu": "Menu",
   "nav_about": "About me",
   "nav_projects": "Project",
-  "nav_content": "program experience",
-  "nav_demos": "Demo Video",
+  "nav_content": "Experience",
+  "nav_demos": "Video",
   "nav_services": "Service Plan",
   "nav_contact": "contact",
 
@@ -72,5 +72,6 @@
   "rights": "All rights reserved.",
   "back_to_top": "Back to top"
 }
+
 
 
