@@ -54,7 +54,7 @@
   "demos_9:16title-1":"數位分身--中文",
   "demos_9:16desc-1":"TTS 聲線與嘴形對應示範。",
   "demos_9:16title-2":"數位分身--粵語",
-  "demos_9:16desc-2":"直式短片中的數字人展示。"
+  "demos_9:16desc-2":"直式短片中的數字人展示。",
   
   "services_title": "服務方案",
   "svc_dh_title": "數字人影片",
@@ -72,3 +72,4 @@
   "rights": "All rights reserved.",
   "back_to_top": "回到頂部"
 }
+
