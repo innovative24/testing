@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title data-i18n="seo.title">Andy｜工程師｜數位內容與系統整合</title>
+
+  <!-- 基本 SEO -->
+  <meta name="description" content="Andy 是一位專注於數位人系統、影音自動化與 Web 應用的工程師，擅長快速原型、系統整合與產品落地。">
+  <meta name="keywords" content="Andy, 工程師, 數位人, 影音自動化, Web, 快速原型, 系統整合" />
+  <meta name="author" content="Andy" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Andy｜工程師｜數位內容與系統整合">
+  <meta property="og:description" content="專注數位人、影音自動化與 Web 應用的工程師。">
+  <meta property="og:image" content="assets/og-cover.jpg">
+  <meta property="og:url" content="https://example.com">
+
+  <!-- 後續會加入 CSS / JS -->
+</head>
+<body>
+
+  <!-- 導覽 -->
+  <header role="banner">
+    <nav aria-label="Primary">
+      <a href="#home" data-i18n="nav.home">首頁</a>
+      <a href="#about" data-i18n="nav.about">關於我</a>
+      <a href="#services" data-i18n="nav.services">服務</a>
+      <a href="#projects" data-i18n="nav.projects">作品/案例</a>
+      <a href="#experience" data-i18n="nav.experience">專業背景</a>
+      <a href="#contact" data-i18n="nav.contact">聯絡</a>
+      <ul class="lang-switch" aria-label="Language Switcher">
+        <li><button type="button" data-setlang="zh">中文</button></li>
+        <li><button type="button" data-setlang="en">EN</button></li>
+        <li><button type="button" data-setlang="ms">BM</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" role="region" aria-label="Hero">
+    <h1 data-i18n="hero.title">嗨，我是 Andy</h1>
+    <p data-i18n="hero.subtitle">工程師｜數位內容與系統整合｜快速原型</p>
+    <p data-i18n="hero.pitch">
+      我專注於「數位人影片」、「影音自動化流程」與「Web 應用」的快速落地，協助品牌用更有效率的方式把點子變成產品。
+    </p>
+    <a href="#contact" data-i18n="hero.cta">聯絡我</a>
+  </section>
+
+  <!-- 關於我 -->
+  <section id="about" role="region" aria-label="About">
+    <h2 data-i18n="about.title">關於我</h2>
+    <p data-i18n="about.desc">
+      我以工程師視角，整合拍攝、後製、TTS/口型同步與前端技術，建立可複用的內容生產線。
+      同時擅長以 5–7 天完成可演示的快速原型，協助團隊對齊方向並加速決策。
+    </p>
+    <ul>
+      <li data-i18n="about.point1">數位人與影音自動化（口型整合、場景合成、批次輸出）</li>
+      <li data-i18n="about.point2">Web/前端原型（多語系、一頁式、行動裝置優化）</li>
+      <li data-i18n="about.point3">系統整合與流程設計（SDI/NDI/IP、導播流程、資料串接）</li>
+    </ul>
+  </section>
+
+  <!-- 服務 -->
+  <section id="services" role="region" aria-label="Services">
+    <h2 data-i18n="services.title">服務內容</h2>
+    <article>
+      <h3 data-i18n="services.s1.title">快速原型 Demo（5–7 天）</h3>
+      <p data-i18n="services.s1.desc">
+        針對你的想法製作可演示版本（含簡易 UI、假資料、流程動線），用最小成本驗證方向。
+      </p>
+    </article>
+    <article>
+      <h3 data-i18n="services.s2.title">數位人影片製作</h3>
+      <p data-i18n="services.s2.desc">
+        口型整合、TTS 聲音、綠幕/虛擬場景合成，適合說書、產品解說、直播輪播等。
+      </p>
+    </article>
+    <article>
+      <h3 data-i18n="services.s3.title">網站與前端</h3>
+      <p data-i18n="services.s3.desc">
+        多語系一頁式網站、Landing Page、互動式原型，支援 SEO 基礎與行動優化。
+      </p>
+    </article>
+  </section>
+
+  <!-- 作品 -->
+  <section id="projects" role="region" aria-label="Projects">
+    <h2 data-i18n="projects.title">作品 / 案例</h2>
+    <div class="project-grid" role="list">
+      <article role="listitem">
+        <h3 data-i18n="projects.p1.title">數位人說書頻道流程</h3>
+        <p data-i18n="projects.p1.desc">從腳本到輸出，建立可複用的說書影片生產線。</p>
+        <a href="#" data-i18n="projects.view">查看</a>
+      </article>
+      <article role="listitem">
+        <h3 data-i18n="projects.p2.title">旅遊 App：HeriLand</h3>
+        <p data-i18n="projects.p2.desc">聚焦城市體驗與在地內容的旅遊原型設計。</p>
+        <a href="#" data-i18n="projects.view">查看</a>
+      </article>
+      <article role="listitem">
+        <h3 data-i18n="projects.p3.title">TemplyHub 模板市集</h3>
+        <p data-i18n="projects.p3.desc">設計師上傳、創作者下載的模板平台原型。</p>
+        <a href="#" data-i18n="projects.view">查看</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- 經歷（整合 B + C） -->
+  <section id="experience" role="region" aria-label="Experience">
+    <h2 data-i18n="exp.title">專業背景與里程碑</h2>
+    <p data-i18n="exp.summary">
+      自大學畢業後即任職於目前公司，專注於數位人系統、影音自動化與 Web 技術，累積超過 5 年實戰經驗。
+      期間專精於快速原型開發、數位人影片製作及系統整合，致力於把創意快速轉化為可落地的產品。
+    </p>
+    <ul class="skills">
+      <li data-i18n="exp.skill1">快速原型開發（5–7 天完成可演示版本）</li>
+      <li data-i18n="exp.skill2">數位人影片製作（口型整合、TTS、虛擬場景）</li>
+      <li data-i18n="exp.skill3">系統整合（SDI/NDI/IP、導播流程、自動化串接）</li>
+    </ul>
+    <ul class="timeline">
+      <li>
+        <span class="year">2020</span>
+        <p data-i18n="exp.2020">加入公司，開始研究數位人與影音自動化。</p>
+      </li>
+      <li>
+        <span class="year">2022</span>
+        <p data-i18n="exp.2022">完成第一個數位人 Demo 流程，應用於影片製作。</p>
+      </li>
+      <li>
+        <span class="year">2024</span>
+        <p data-i18n="exp.2024">拓展至 Web 原型與跨平台應用，建立多語系內容網站。</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 聯絡 -->
+  <section id="contact" role="region" aria-label="Contact">
+    <h2 data-i18n="contact.title">聯絡方式</h2>
+    <p><span data-i18n="contact.desc">需要我協助？歡迎來信或加我社群。</span></p>
+    <ul>
+      <li><a href="mailto:andy@example.com">andy@example.com</a></li>
+      <li><a href="https://t.me/andy" target="_blank" rel="noopener">Telegram</a></li>
+      <li><a href="https://www.linkedin.com/in/andy" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <small>&copy; <span id="year">2025</span> Andy. <span data-i18n="footer.rights">保留所有權利。</span></small>
+  </footer>
+
+</body>
+</html>
