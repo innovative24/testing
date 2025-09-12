@@ -33,3 +33,4 @@ function applyTranslations(root = document) {
     if (val) el.textContent = val;
   });
 }
+
