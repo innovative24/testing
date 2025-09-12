@@ -69,7 +69,7 @@
     "footer.name": " Penny Tang ",
     "footer.rights": "All rights reserved."
   },
-  "bm"{
+  "bm":{
 	"title.about":"Portfolio|Mengenai saya"
     "title.works": "Portfolio|",
     "nav.about": "Mengenai saya",
@@ -107,3 +107,4 @@
 
   }
 }
+
