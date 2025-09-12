@@ -55,9 +55,9 @@
     "c_email": "Email",
     "c_phone": "Phone",
     "c_whatsapps": "WhatsApp",
-    "l.email":"pruamywong@yahoo.com",
-    "l.phone":"+601153918625",
-    "l.whatsapps":"Whatsapps",
+    "l.email": "pruamywong@yahoo.com",
+    "l.phone": "+601153918625",
+    "l.whatsapps": "Whatsapps",
     "works.title": "Works",
     "works.upload": "Upload",
     "unknown.works": "No works yet",
@@ -94,9 +94,9 @@
     "c_email": "E-mel",
     "c_phone": "Telefon",
     "c_whatsapps": "WhatsApp",
-    "l.email":"pruamywong@yahoo.com",
-    "l.phone":"+601153918625",
-    "l.whatsapps":"Whatsapps",
+    "l.email": "pruamywong@yahoo.com",
+    "l.phone": "+601153918625",
+    "l.whatsapps": "Whatsapps",
     "works.title": "Karya",
     "works.upload": "Muat naik",
     "unknown.works": "Tiada karya lagi",
@@ -117,6 +117,7 @@
     "footer.rights": "Hak cipta terpelihara."
   }
 }
+
 
 
 
