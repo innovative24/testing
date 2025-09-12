@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="title.works">我的作品集｜作品</title>
+  
+  <link rel="stylesheet" href="./css/main.css">
+  
+</head>
+<body>
+  <header>
+  <div class="header-inner">
+    <nav aria-label="主選單">
+      <a href="index.html" data-i18n="nav.about">關於我</a>
+      <a href="works.html" aria-current="page" data-i18n="nav.works">作品</a>
+    </nav>
+    <!-- 語言切換按鈕 -->
+    <div id="lang-switch">
+      <button data-setlang="zh" data-i18n="chinese_tw">中文</button>
+	  <span aria-hidden="true" >|</span>
+      <button data-setlang="en" data-i18n="english">英文</button>
+	  <span aria-hidden="true">|</span>
+      <button data-setlang="bm" data-i18n="bahasa_melayu">馬來文</button>
+    </div>
+	 </div>
+  </header>
+
+  <main id="main-content">
+    <section> 
+	  <section aria-labelledby="works-title">
+  <div class="page-head">
+    <h1 id="works-title" data-i18n="works.title">作品</h1>
+    <button type="button" id="open-upload" data-i18n="works.upload">上傳作品</button>
+  </div>
+
+  <!-- 空狀態 -->
+  <div id="empty-state" role="status" aria-live="polite">
+    <div class="empty-card">
+      <p class="empty-title" data-i18n="unknown.works">尚無作品</p>
+      <p class="empty-tip" data-i18n="works.onclick.upload">點擊下方按鈕或拖放圖片到此區域開始上傳</p>
+      <button type="button" class="btn" id="empty-upload" data-i18n="works.upload">上傳作品</button>
+    </div>
+  </div>
+
+  <!-- 畫家篩選（空時可先隱藏，JS 會處理） -->
+  <nav aria-label="畫家篩選" id="artist-filter-wrap" hidden>
+    <ul id="artist-filter">
+      <li><button type="button" data-filter="*" class="is-active" data-i18n="filter.all">全部</button></li>
+    </ul>
+  </nav>
+
+  <ul id="gallery" aria-label="作品列表"></ul>
+</section>
+
+
+      <!-- 作品清單 
+      <ul id="gallery">
+        <li>
+          <details class="work" data-tags="penny">
+            <summary>
+              <div class="thumb"><img src="./assets/portfolio/犀鳥.png" alt="作品一預覽圖"></div>
+              <h2 class="title" data-i18n="work1.title">犀鳥</h2>
+              <ul class="tags">
+                <li data-i18n="tag.penny">郑珮嫺</li>
+              </ul>
+            </summary>
+            <div class="meta">
+              <p class="desc" data-i18n="work1.desc">婆罗洲热带雨林的珍稀灵禽，在砂拉越被尊为“国之瑰宝”，亦是砂州的州鸟，象征吉祥、忠贞与自然和谐。</p>
+			  <div class="actions">
+    <button class="btn btn-ghost" onclick="openDetail('work1')">詳細說明</button>
+    <button class="btn btn-view btn-image" onclick="openImage('assets/work-01.jpg')">查看圖片</button>
+  </div>
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details class="work" data-tags="andy">
+            <summary>
+              <div class="thumb"><img src="./assets/portfolio/黑橄榄.png" alt="作品二預覽圖"></div>
+              <h2 class="title" data-i18n="work2.title">黑橄榄</h2>
+              <ul class="tags">
+                <li data-i18n="tag.andy">王成益</li>
+              </ul>
+            </summary>
+            <div class="meta">
+              <p class="desc" data-i18n="work2.desc">砂拉越独有的风味果实，是本地人引以为傲的农产珍品。</p>
+            </div>
+          </details>
+        </li>
+      </ul> -->
+    </section>
+  </main>
+  
+   <!-- 上傳視窗骨架（同前；保留） -->
+  <dialog id="upload-dialog" aria-labelledby="upload-title">
+    <form method="dialog" id="upload-form">
+      <header style="display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+        <h2 id="upload-title" data-i18n="works.upload">上傳作品</h2>
+        <button type="button" data-close aria-label="關閉">✕</button>
+      </header>
+
+      <section>
+        <p data-i18n="works.upload.fileDesc">請填寫作品資訊並選擇要上傳的檔案。</p>
+        <label>
+          <p data-i18n="works.upload.title">作品標題</p>
+          <input type="text" name="title" placeholder="例如：HeriLand App – My Trips" required />
+        </label>
+        <br />
+        <label>
+          <p data-i18n="works.upload.artist">畫家
+          <input type="text" name="artist" placeholder="山水畫,花鳥畫,人物畫,畫馬,吉祥寓意" />
+        </label>
+        <br />
+        <label>
+          <p data-i18n="works.upload.file">上傳檔案
+          <input type="file" name="file"
+                 accept=".png,.jpg,.jpeg,.gif,.webp,.mp4,.mov,.pdf" required />
+        </label>
+        <br />
+        <label>
+		  <p data-i18n="works.upload.abstract">摘要（展開卡片顯示）
+			<textarea name="excerpt" rows="3" maxlength="160" placeholder="1–3 句重點摘要"></textarea>
+		</label>
+		<label>
+		  <p data-i18n="works.upload.detail">詳細說明（點詳細說明後顯示）
+			<textarea name="detail" rows="8" placeholder="完整內容、段落、連結…"></textarea>
+		</label>
+      </section>
+
+      <menu>
+        <button type="button" data-close data-i18n="works.upload.cancel">取消</button>
+		<button type="submit" value="submit" data-i18n="works.upload.submit">提交</button>
+      </menu>
+    </form>
+
+    <noscript>
+      <p data-i18n="works.cookies">你的瀏覽器未啟用 JavaScript。請前往 <a href="upload.html"><span data-i18n="cookies.upload.page">上傳頁</span></a><span data-i18n="cookies.upload.done"> 完成上傳。</span></p>
+    </noscript>
+  </dialog>
+  
+  <!-- Lightbox -->
+<dialog id="img-lightbox" aria-labelledby="img-caption">
+  <button type="button" class="lightbox-close" aria-label="關閉">✕</button>
+  <img id="lightbox-img" alt="" />
+  <p id="img-caption" class="caption"></p>
+</dialog>
+
+  <footer>
+    <small>© <span id="year">2025</span> <span data-i18n="footer.name">你的名字</span>. <span data-i18n="footer.rights">All rights reserved.</span></small>
+  </footer>
+  
+  <script src="./lang/lang.js" ></script>
+  <script src="./js/app.js" ></script>
+  <script src="./js/pop-up.js" defer></script>
+  
+</body>
+</html>

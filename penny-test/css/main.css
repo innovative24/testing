@@ -1,0 +1,590 @@
+/* ========== 基礎設定 ========== */
+:root{
+  --bg: #0f1115;
+  --surface: #151924;
+  --muted-surface: #0f1320;
+  --text: #e8ecf2;
+  --text-dim: #a9b3c7;
+  --primary: #6aa5ff;
+  --primary-2: #8ed0ff;
+  --chip-bg: rgba(255,255,255,.06);
+  --chip-border: rgba(255,255,255,.12);
+  --ring: 0 0 0 3px rgba(106,165,255,.32);
+  --radius-s: 10px;
+  --radius-m: 14px;
+  --radius-l: 18px;
+  --shadow-1: 0 6px 20px rgba(0,0,0,.25);
+  --shadow-2: 0 20px 60px rgba(0,0,0,.35);
+  --max-w: 1120px;
+}
+
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --muted-surface:#f1f4f9;
+    --text:#1c2333;
+    --text-dim:#4a5876;
+    --chip-bg: rgba(0,0,0,.04);
+    --chip-border: rgba(0,0,0,.08);
+    --shadow-1: 0 6px 20px rgba(21,25,36,.08);
+    --shadow-2: 0 20px 60px rgba(21,25,36,.12);
+  }
+}
+
+*{ box-sizing:border-box }
+html,body{ margin:0; padding:0; }
+body{
+  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 80% -10%, rgba(106,165,255,.12), transparent 60%),
+              radial-gradient(1000px 620px at -10% 30%, rgba(142,208,255,.12), transparent 60%),
+              var(--bg);
+}
+
+/* ========== 版面骨架 ========== */
+header{
+  position: sticky; top:0; z-index: 10;
+  backdrop-filter: blur(8px);
+  background: color-mix(in oklab, var(--bg), transparent 20%);
+  border-bottom: 1px solid var(--chip-border);
+}
+.header-inner{
+  max-width: var(--max-w); margin: 0 auto; padding: 12px 20px;
+  display:flex; align-items:center; justify-content:space-between; gap: 16px;
+}
+
+nav[aria-label="主選單"]{
+  display:flex; gap: 14px; flex-wrap: wrap;
+}
+nav[aria-label="主選單"] a{
+  text-decoration:none; color: var(--text-dim); padding: 8px 12px; border-radius: var(--radius-s);
+  border: 1px solid transparent;
+}
+nav[aria-label="主選單"] a[aria-current="page"],
+nav[aria-label="主選單"] a:hover{
+  color: var(--text); border-color: var(--chip-border); background: var(--chip-bg);
+}
+
+#lang-switch{ display:flex; align-items:center; gap: 6px; color: var(--text-dim); }
+#lang-switch button{
+  appearance:none; border:1px solid var(--chip-border); background: var(--chip-bg); color: var(--text);
+  padding:6px 10px; border-radius: 999px; cursor:pointer;
+}
+#lang-switch button:hover{ border-color: color-mix(in oklab, var(--primary), transparent 70%); }
+#lang-switch button:is(:focus-visible){ outline: none; box-shadow: var(--ring); }
+
+main{ max-width: var(--max-w); margin: 24px auto; padding: 0 20px; }
+footer{ max-width: var(--max-w); margin: 40px auto 80px; padding: 0 20px; color: var(--text-dim); }
+
+/* ========== 通用元件 ========== */
+button, .btn{
+  appearance:none; border:1px solid transparent; background: var(--primary);
+  color:#0c1220; font-weight:600; padding:10px 14px; border-radius: var(--radius-s);
+  cursor:pointer; box-shadow: var(--shadow-1);
+}
+button:hover{ filter: brightness(1.06); }
+button:active{ transform: translateY(1px); }
+button:focus-visible{ outline:none; box-shadow: var(--ring); }
+
+/* 次要按鈕（晶片風） */
+.btn-ghost{
+  background: var(--chip-bg); color: var(--text);
+  border-color: var(--chip-border);
+}
+
+/* ========== index（關於我）建議樣式（可選） ========== */
+.profile{
+  display:grid; gap: 24px; grid-template-columns: 1fr; align-items:start;
+}
+@media (min-width: 800px){
+  .profile{ grid-template-columns: 320px 1fr; }
+}
+.profile figure{
+  margin:0; background: var(--surface); padding: 10px; border-radius: var(--radius-m);
+  border:1px solid var(--chip-border); box-shadow: var(--shadow-1);
+}
+.profile img{ display:block; width:100%; height:auto; border-radius: calc(var(--radius-m) - 6px); }
+.section{
+  background: var(--surface); border:1px solid var(--chip-border);
+  border-radius: var(--radius-m); padding: 20px; box-shadow: var(--shadow-1);
+}
+.section h2{ margin-top:0; }
+
+/* ========== works（作品頁） ========== */
+
+/* 標題列與上傳按鈕區 */
+.page-head{
+  display:flex; align-items:center; justify-content:space-between; gap: 12px; margin-bottom: 12px;
+}
+#open-upload{ white-space: nowrap; }
+
+/* 篩選器（類別） */
+#category-filter{
+  list-style:none; padding:0; margin: 8px 0 20px; display:flex; gap: 8px; flex-wrap:wrap;
+}
+#category-filter li{ margin:0; }
+#category-filter button{
+  appearance:none; background: var(--chip-bg); border: 1px solid var(--chip-border);
+  color: var(--text); padding:8px 12px; border-radius: 999px; cursor:pointer;
+}
+#category-filter button:hover{ border-color: color-mix(in oklab, var(--primary), transparent 70%); }
+#category-filter button.is-active{
+  background: linear-gradient(180deg, var(--primary), var(--primary-2));
+  color: #0c1220; border-color: transparent;
+}
+
+/* 作品清單（網格） */
+#gallery{
+  list-style:none; padding:0; margin:0;
+  display:grid; gap: 16px;
+  grid-template-columns: repeat( auto-fill, minmax(260px, 1fr) );
+}
+
+/* 單一卡片：用 details/summary 讓無 JS 也能展開 */
+.work{
+  background: var(--surface);
+  border:1px solid var(--chip-border);
+  border-radius: var(--radius-m);
+  overflow: clip;
+  box-shadow: var(--shadow-1);
+}
+.work summary{
+  list-style:none; cursor:pointer; padding: 12px; display:grid; gap: 10px;
+}
+.work summary::-webkit-details-marker{ display:none; }
+
+/* 縮圖容器：統一固定比例（確保外觀一致） */
+.thumb{
+  position: relative;
+  border-radius: calc(var(--radius-m) - 6px);
+  overflow: hidden;
+  background: var(--muted-surface);
+  /* 固定比例：4:3，可改 16/9 或 1/1 */
+  aspect-ratio: 4 / 3;
+  /* 若你想改成固定像素，也可以： width:100%; height: 200px; */
+}
+.thumb img{
+  width:100%; height:100%; display:block; object-fit: cover; object-position: center;
+  transition: transform .35s ease, opacity .35s ease;
+}
+.work:hover .thumb img{ transform: scale(1.02); opacity:.96; }
+
+/* 標題與標籤（chips） */
+.work .title{ margin: 2px 4px 0; font-size: 1.05rem; }
+.work .tags{
+  margin:0; padding: 0 4px 4px; list-style:none; display:flex; gap:6px; flex-wrap:wrap;
+}
+.work .tags li{
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+  color: var(--text-dim);
+  padding:4px 8px; border-radius: 999px; font-size: .85rem;
+}
+
+/* 展開後資訊區塊 */
+.work .meta{
+  border-top: 1px dashed var(--chip-border);
+  padding: 12px; color: var(--text-dim);
+}
+.work[open]{
+  box-shadow: var(--shadow-2);
+  outline: none;
+}
+.work[open] .meta{ animation: fadeIn .24s ease both; }
+@keyframes fadeIn{ from{ opacity:0; transform: translateY(2px);} to{ opacity:1; transform:none;} }
+
+/* ========== 對話框（上傳視窗） ========== */
+dialog{
+  border:none; padding:0; background: transparent;
+}
+dialog::backdrop{
+  background: color-mix(in oklab, #000, transparent 40%);
+  backdrop-filter: blur(4px);
+}
+#upload-dialog form{
+  width: min(720px, 92vw);
+  background: var(--surface);
+  color: var(--text);
+  border:1px solid var(--chip-border);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-2);
+  padding: 16px;
+}
+#upload-dialog header{
+  border-bottom: 1px solid var(--chip-border);
+  margin: -4px -4px 12px; padding: 8px 8px 12px;
+}
+#upload-dialog section{
+  display:grid; gap: 12px; padding: 8px 4px;
+}
+#upload-dialog label{
+  display:grid; gap: 6px;
+}
+#upload-dialog input[type="text"],
+#upload-dialog input[type="file"],
+#upload-dialog textarea{
+  width:100%; padding:10px 12px; border-radius: var(--radius-s);
+  border:1px solid var(--chip-border); background: var(--muted-surface); color: var(--text);
+}
+#upload-dialog menu{
+  margin: 14px -4px -4px; padding: 12px; display:flex; gap: 10px; justify-content:flex-end;
+  border-top: 1px solid var(--chip-border);
+}
+
+/* ========== 可用性與輔助 ========== */
+a, button{ transition: filter .2s ease, background-color .2s ease, transform .06s ease; }
+:focus-visible{ outline: none; box-shadow: var(--ring); }
+img{ max-width: 100%; height: auto; }
+
+/* 讓 header 結構更一致（舊 HTML 也能套樣式） */
+header > nav, header > #lang-switch{
+  max-width: var(--max-w); margin: 0 auto; padding: 10px 20px;
+}
+@media (min-width: 720px){
+  header > nav{ padding-bottom: 0; }
+  header > #lang-switch{ padding-top: 0; }
+}
+
+/* 簡易容器樣式（若 index 用得到） */
+.container{
+  background: var(--surface);
+  border:1px solid var(--chip-border);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-1);
+  padding: 20px;
+}
+
+/* 小螢幕微調 */
+@media (max-width: 420px){
+  .work .title{ font-size: 1rem; }
+  #category-filter button{ padding:6px 10px; }
+}
+
+
+/* === 讓主選單與語言選單同一排 === */
+.header-inner{
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap; /* 螢幕超窄時自動換行 */
+}
+nav[aria-label="主選單"]{ display:flex; gap:14px; flex-wrap:wrap; }
+#lang-switch{ display:flex; align-items:center; gap:10px; }
+
+/* === 畫家篩選（chip 樣式）=== */
+#artist-filter{
+  list-style: none;       /* 去掉圓點 */
+  padding: 0;
+  margin: 12px 0 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+#artist-filter li{ margin:0; }
+
+#artist-filter button{
+  appearance: none;
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: .2px;
+  box-shadow: var(--shadow-1);
+  cursor: pointer;
+  position: relative;
+  transition: transform .12s ease, filter .2s ease, box-shadow .2s ease;
+}
+#artist-filter button:hover{
+  filter: brightness(1.06);
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+}
+#artist-filter button:focus-visible{
+  outline: none;
+  box-shadow: var(--ring);
+}
+#artist-filter button.is-active{
+  background: linear-gradient(180deg, var(--primary), var(--primary-2));
+  color: #0c1220;
+  border-color: transparent;
+  box-shadow: var(--shadow-2);
+  transform: translateY(-1px);
+}
+
+/* 覆蓋原本的縮圖規則：保持 4:3 框，不裁切 */
+.thumb{
+  position: relative;
+  aspect-ratio: 4 / 3;           /* 你也可改 16/9 或 1/1 */
+  border-radius: calc(var(--radius-m) - 6px);
+  overflow: hidden;
+  background: var(--muted-surface); /* 邊框顏色，可換成 #fff */
+}
+.thumb img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;            /* 由 cover 改成 contain → 不裁切 */
+  object-position: center;
+  /* 取消 hover 放大，避免超出 */
+  transition: opacity .2s ease;
+}
+.work:hover .thumb img{ transform: none; opacity: 1; }
+
+.thumb{
+  background: radial-gradient(120% 80% at 50% 20%, rgba(255,255,255,.06), transparent),
+              var(--muted-surface);
+  box-shadow: inset 0 0 0 1px var(--chip-border);
+}
+
+/* 動作列（詳細說明 / 查看圖片） */
+.work .actions{
+  margin-top: 8px;
+  display:flex; gap:10px; flex-wrap:wrap;
+}
+.work .actions .btn{ padding:8px 12px; }
+.work .actions .btn-ghost{
+  background: var(--chip-bg);
+  color: var(--text);
+  border: 1px solid var(--chip-border);
+}
+
+/* Lightbox */
+#img-lightbox{
+  border:none; padding:0; background: transparent;
+}
+#img-lightbox::backdrop{
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(2px);
+}
+#img-lightbox #lightbox-img{
+  max-width: 92vw; max-height: 88vh; display:block; margin: 0 auto;
+  object-fit: contain; background: var(--muted-surface);
+  border-radius: 12px; box-shadow: var(--shadow-2);
+}
+#img-lightbox .caption{
+  margin: 10px auto 0; padding: 6px 10px; max-width: 92vw;
+  text-align:center; color: var(--text-dim); background: transparent;
+}
+#img-lightbox .lightbox-close{
+  position: fixed; top: 14px; right: 16px; z-index: 2;
+  appearance:none; border:1px solid var(--chip-border);
+  background: var(--surface); color: var(--text);
+  padding:6px 10px; border-radius: 999px; cursor:pointer;
+  box-shadow: var(--shadow-1);
+}
+#img-lightbox .lightbox-close:focus-visible{ outline:none; box-shadow: var(--ring); }
+
+
+/* === 空狀態卡 === */
+#empty-state{ margin: 18px 0 22px; }
+.empty-card{
+  background: var(--surface, #fff);
+  border: 1px dashed var(--chip-border, rgba(0,0,0,.12));
+  border-radius: 14px;
+  padding: 28px;
+  text-align: center;
+  box-shadow: var(--shadow-1, 0 6px 20px rgba(0,0,0,.08));
+}
+.empty-title{ font-size: 1.1rem; margin: 0 0 6px; }
+.empty-tip{ margin: 0 0 14px; color: var(--text-dim, #667); }
+
+/* === 篩選器／畫家 chips === */
+#artist-filter{ list-style:none; padding:0; margin: 12px 0 20px; display:flex; gap:10px; flex-wrap:wrap; }
+#artist-filter li{ margin:0; }
+#artist-filter button{
+  appearance:none; border:1px solid var(--chip-border, rgba(0,0,0,.12));
+  background: var(--chip-bg, rgba(0,0,0,.05));
+  color: var(--text, #111);
+  padding: 8px 14px; border-radius: 999px; font-weight:600; cursor:pointer;
+}
+#artist-filter button.is-active{
+  background: linear-gradient(180deg, var(--primary, #6aa5ff), var(--primary-2, #8ed0ff));
+  color: #0c1220; border-color: transparent;
+}
+
+/* === 作品清單網格 === */
+#gallery{ list-style:none; padding:0; margin:0; display:grid; gap:16px;
+  grid-template-columns: repeat( auto-fill, minmax(260px, 1fr) ); }
+
+.work{
+  background: var(--surface, #fff);
+  border: 1px solid var(--chip-border, rgba(0,0,0,.12));
+  border-radius: 14px; overflow: clip;
+}
+.work summary{ list-style:none; padding:12px; display:grid; gap:10px; cursor:pointer; }
+.work summary::-webkit-details-marker{ display:none; }
+
+.thumb{
+  aspect-ratio: 4/3; border-radius: 10px; overflow:hidden; background: var(--muted-surface, #f4f6f9);
+}
+.thumb img{ width:100%; height:100%; object-fit: cover; display:block; }
+
+.work .title{ margin: 2px 4px 0; font-size: 1.05rem; }
+.work .tags{ margin:0; padding: 0 4px 4px; list-style:none; display:flex; gap:6px; flex-wrap:wrap; }
+.work .tags li{
+  background: var(--chip-bg, rgba(0,0,0,.05));
+  border: 1px solid var(--chip-border, rgba(0,0,0,.12));
+  color: var(--text-dim, #667); padding:4px 8px; border-radius:999px; font-size:.85rem;
+}
+
+.work .meta{ border-top: 1px dashed var(--chip-border, rgba(0,0,0,.12)); padding:12px; color: var(--text-dim, #667); }
+
+/* === dialog 降級（舊瀏覽器） === */
+dialog.fallback-open{
+  position: fixed; inset: 0; display:grid; place-items:center; padding:0;
+  background: rgba(0,0,0,.4); border:none; z-index: 9999;
+}
+dialog.fallback-open > form{
+  width: min(720px, 92vw); background: var(--surface, #fff);
+  border: 1px solid var(--chip-border, rgba(0,0,0,.12));
+  border-radius: 18px; box-shadow: 0 20px 60px rgba(0,0,0,.25); padding:16px;
+}
+
+/* 縮圖改為原圖完整顯示（不裁切） */
+.thumb{
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--muted-surface, #f4f6f9);
+  /* 取消固定比例：高度依圖片比例自適應 */
+}
+.thumb img{
+  width: 100%;
+  height: auto;        /* 保持原比例 */
+  object-fit: contain; /* 不裁切 */
+  display: block;
+}
+
+/* 說明區動作列 */
+.work .actions{
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.work .actions .btn{
+  appearance:none; border:1px solid transparent;
+  padding: 8px 12px; border-radius: 10px; cursor:pointer;
+  background: var(--primary, #6aa5ff); color: #0c1220; font-weight: 600;
+}
+.work .actions .btn-ghost{
+  background: var(--chip-bg, rgba(0,0,0,.05));
+  color: var(--text, #111);
+  border-color: var(--chip-border, rgba(0,0,0,.12));
+}
+
+/* Lightbox 樣式（JS 會自動注入對話框） */
+#img-lightbox{ border:none; padding:0; background: transparent; }
+#img-lightbox::backdrop{ background: rgba(0,0,0,.6); backdrop-filter: blur(2px); }
+#img-lightbox .lightbox-close{
+  position: fixed; top: 14px; right: 16px; z-index: 2;
+  appearance:none; border:1px solid var(--chip-border, rgba(0,0,0,.12));
+  background: var(--surface, #fff); color: var(--text, #111);
+  padding:6px 10px; border-radius: 999px; cursor:pointer;
+}
+#img-lightbox img{
+  max-width: 92vw; max-height: 88vh; display:block; margin: 0 auto;
+  object-fit: contain; background: var(--muted-surface, #f4f6f9);
+  border-radius: 12px;
+}
+#img-lightbox .caption{
+  margin: 10px auto 0; padding: 6px 10px; max-width: 92vw;
+  text-align:center; color: var(--text-dim, #667);
+}
+
+/* 固定縮圖容器：統一大小 */
+.thumb{
+  width: 100%;
+  height: 300px;              /* 固定高度，依需求可調整 */
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--muted-surface, #f4f6f9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.thumb img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;        /* 不裁切，完整顯示 */
+  display: block;
+}
+
+/* 詳細說明 Lightbox 樣式 */
+#detail-lightbox{ border:none; padding:0; background: transparent; }
+#detail-lightbox::backdrop{ background: rgba(0,0,0,.6); backdrop-filter: blur(2px); }
+#detail-lightbox .detail-box{
+  max-width: 720px; max-height: 80vh;
+  overflow-y: auto;
+  background: var(--surface, #fff);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+#detail-lightbox .lightbox-close{
+  position: absolute; top: 12px; right: 16px;
+  background: var(--chip-bg, rgba(0,0,0,.05));
+  border: 1px solid var(--chip-border, rgba(0,0,0,.12));
+  border-radius: 999px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+
+/* 縮圖容器固定，高度統一；圖片完整顯示 */
+.thumb{
+  width: 100%;
+  height: 300px;                 /* 想改尺寸只改這行 */
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--muted-surface, #f4f6f9);
+  display: flex; align-items: center; justify-content: center;
+}
+.thumb img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;           /* 不裁切，完整顯示 */
+  display: block;
+}
+
+/* 摘要下的動作列 */
+.work .actions{
+  margin-top: 8px;
+  display:flex; gap:10px; flex-wrap:wrap;
+}
+.work .actions .btn{
+  appearance:none; border:1px solid transparent;
+  padding:8px 12px; border-radius:10px; cursor:pointer;
+  background: var(--primary, #6aa5ff); color:#0c1220; font-weight:600;
+}
+.work .actions .btn-ghost{
+  background: var(--chip-bg, rgba(0,0,0,.05));
+  color: var(--text, #111);
+  border-color: var(--chip-border, rgba(0,0,0,.12));
+}
+
+/* 詳細說明 Lightbox */
+#detail-lightbox{ border:none; padding:0; background: transparent; }
+#detail-lightbox::backdrop{ background: rgba(0,0,0,.6); backdrop-filter: blur(2px); }
+#detail-lightbox .detail-box{
+  position: relative;
+  max-width: 720px; max-height: 80vh; overflow: auto;
+  background: var(--surface, #fff);
+  border: 1px solid var(--chip-border, rgba(0,0,0,.12));
+  border-radius: 14px; padding: 22px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  margin: 6vh auto 0;
+}
+#detail-lightbox .lightbox-close{
+  position: absolute; top: 10px; right: 12px;
+  background: var(--chip-bg, rgba(0,0,0,.05));
+  border: 1px solid var(--chip-border, rgba(0,0,0,.12));
+  border-radius: 999px; padding: 6px 10px; cursor:pointer;
+}
+#detail-lightbox h2{ margin: 0 0 4px; }
+#detail-lightbox .byline{ margin: 0 0 12px; color: var(--text-dim, #667); }
