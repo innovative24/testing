@@ -1,6 +1,6 @@
 {
   "zh": {
-	"title.about":"我的作品集｜關於我"
+	"title.about":"我的作品集｜關於我",
     "title.works": "我的作品集｜作品",
     "nav.about": "關於我",
     "nav.works": "作品",
@@ -35,7 +35,7 @@
     "footer.rights": "版權所有"
   },
   "en": {
-    "title.about":"My portfolio|About me"
+    "title.about":"My portfolio|About me",
     "title.works": "My portfolio |",
     "nav.about": "About me",
     "nav.works": " Artwork ",
@@ -45,7 +45,7 @@
 	"about.name":"Name",
 	"about.role":" Penny Tang",
 	"about.title":"Introduce ",
-	"about.desc":"In 2024, he will complete the six-month course of the Academy of Chinese Painting and Calligraphy and Painting. He is currently continuing his studies and studying for a master class in Chinese painting. I am a member of the Sibu Contemporary Art Association and the Sibu Ink Painting Association. In December 2024, I created 45 Chinese paintings to raise funds for my alma mater's 90th anniversary and the gymnasium, which I presented as souvenirs	 to the alumni and teachers who donated. 2025/03 I created 35 Chinese paintings for the inauguration ceremony of a kindergarten and gave them to donors. A total of 80 works were completed twice, which was a comprehensive test of physical strength, perseverance and artistic enthusiasm.  From May 2 to 4, 2025, I was invited to participate in the "MY Visual Art Exhibition" to exhibit my personal works at the Sibu University of Technology (UTS) and share my creative journey with the public. ",
+	"about.desc":"In 2024, she will complete the six-month course of the Academy of Chinese Painting and Calligraphy and Painting. He is currently continuing his studies and studying for a master class in Chinese painting. I am a member of the Sibu Contemporary Art Association and the Sibu Ink Painting Association. In December 2024, I created 45 Chinese paintings to raise funds for my alma mater's 90th anniversary and the gymnasium, which I presented as souvenirs	 to the alumni and teachers who donated. 2025/03 I created 35 Chinese paintings for the inauguration ceremony of a kindergarten and gave them to donors. A total of 80 works were completed twice, which was a comprehensive test of physical strength, perseverance and artistic enthusiasm.  From May 2 to 4, 2025, I was invited to participate in the "MY Visual Art Exhibition" to exhibit my personal works at the Sibu University of Technology (UTS) and share my creative journey with the public. ",
 	"contact":"Contact",
 	"c_email":"Email",
 	"c_phone":"Phone",
@@ -70,7 +70,7 @@
     "footer.rights": "All rights reserved."
   },
   "bm":{
-	"title.about":"Portfolio|Mengenai saya"
+	"title.about":"Portfolio|Mengenai saya",
     "title.works": "Portfolio|",
     "nav.about": "Mengenai saya",
     "nav.works": " Karya seni ",
@@ -103,8 +103,7 @@
 	"cookies.upload.done":"Lengkapkan muat naik",
     "footer.name": " Penny Tang ",
     "footer.rights": "Hak cipta terpelihara."
-
-
   }
 }
+
 
