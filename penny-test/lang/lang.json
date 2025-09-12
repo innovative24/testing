@@ -9,6 +9,7 @@
     "bm": "馬來文",
     "about.name": "你的名字",
     "about.role": "郑珮娴 | Penny Tang",
+    "about.location":"马来西亚砂拉越诗巫",
     "about.title": "自我介紹",
     "about.desc": "2024年完成及象書畫院為期六個月的國畫學院班課程。目前持續進修，攻讀國畫大師班。我是詩巫當代美術協會會員，以及詩巫水墨畫協會會員。2024年12月我為母校90周年校慶及綜合體育館籌款，親筆創作了45幅國畫，作為紀念品贈送給捐款的校友與師長。2025年03月我再為一所幼兒園落成典禮創作了35幅國畫，贈予捐款者。兩次共完成80幅作品，是對體力、毅力與藝術熱誠的全面考驗。2025年5月2日至4日我受邀參與「MY視覺美術展」，於詩巫科技大學（UTS）展出個人作品，與大眾分享我的創作旅程。",
     "contact": "聯絡方式",
@@ -47,6 +48,7 @@
     "bm": "BM",
     "about.name": "Name",
     "about.role": "Penny Tang",
+    "about.location":"Sibu Sarawak Malaysia",
     "about.title": "Introduction",
     "about.desc": "In 2024, I completed a six-month program at the Academy of Chinese Painting. I am continuing my studies in a master class in Chinese painting. I am a member of the Sibu Contemporary Art Association and the Sibu Ink Painting Association. In December 2024, I created 45 Chinese paintings to raise funds for my alma mater’s 90th anniversary and its gymnasium, presenting them as souvenirs to alumni and teachers who donated. In March 2025, I created 35 Chinese paintings for a kindergarten’s inauguration and gifted them to donors. Completing 80 works in total tested my stamina, perseverance, and artistic passion. From May 2 to 4, 2025, I was invited to the “MY Visual Art Exhibition” at University of Technology Sarawak (UTS) to share my creative journey.",
     "contact": "Contact",
@@ -85,6 +87,7 @@
     "bm": "BM",
     "about.name": "Nama",
     "about.role": "Penny Tang",
+    "about.location":"Sibu Sarawak Malaysia",
     "about.title": "Pengenalan",
     "about.desc": "Pada tahun 2024, saya menamatkan program enam bulan di Akademi Lukisan Cina. Kini saya meneruskan pengajian dalam kelas induk lukisan Cina. Saya ahli Persatuan Seni Kontemporari Sibu dan Persatuan Lukisan Dakwat Sibu. Pada Disember 2024, saya mencipta 45 lukisan Cina untuk mengumpul dana ulang tahun ke-90 alma mater dan gimnasium, sebagai cenderahati kepada alumni dan guru yang menderma. Pada Mac 2025, saya mencipta 35 lukisan Cina untuk majlis perasmian sebuah tadika dan menghadiahkannya kepada penyumbang. Jumlah 80 karya ini menguji kekuatan fizikal, ketabahan dan semangat seni saya. Pada 2–4 Mei 2025, saya dijemput ke “Pameran Seni Visual MY” di Universiti Teknologi Sibu (UTS) untuk berkongsi perjalanan kreatif saya.",
     "contact": "Hubungi",
@@ -114,6 +117,7 @@
     "footer.rights": "Hak cipta terpelihara."
   }
 }
+
 
 
 
