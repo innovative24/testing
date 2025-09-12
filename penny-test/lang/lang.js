@@ -11,7 +11,7 @@ let current = localStorage.getItem(STORAGE_KEY) || "zh";
   const baseUrl = scriptUrl
     ? scriptUrl.replace(/[^/]*$/, "") // 去掉檔名（保留最後一個 /）
     : (location.origin + location.pathname.replace(/[^/]*$/, ""));
-  const LANG_JSON_URL = baseUrl + "lang.json";
+  const LANG_JSON_URL = baseUrl + "lang/lang.json";
 
   try {
     const res = await fetch(LANG_JSON_URL, { cache: "no-store" });
@@ -55,3 +55,4 @@ function getFallbackDict() {
     bm: { "zh_tw": "Cina", "en": "Inggeris", "bm": "Bahasa Melayu" }
   };
 }
+
