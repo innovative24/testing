@@ -15,6 +15,9 @@
     "c_email": "郵箱",
     "c_phone": "電話",
     "c_whatsapps": "WhatsApp",
+    "l_email":"pruamywong@yahoo.com",
+    "l_phone":"+601153918625",
+    "l_whatsapps":"Whatsapps",
     "works.title": "作品",
     "works.upload": "上傳作品",
     "unknown.works": "尚無作品",
@@ -105,3 +108,4 @@
     "footer.rights": "Hak cipta terpelihara."
   }
 }
+
