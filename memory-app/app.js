@@ -176,7 +176,6 @@ $('#exportAllBtn').addEventListener('click', ()=>{
   document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
 });
 
-// 全部匯入（合併）
 $('#importAllBtn').addEventListener('click', ()=>{
   const input = document.createElement('input'); 
   input.type='file'; 
@@ -185,45 +184,62 @@ $('#importAllBtn').addEventListener('click', ()=>{
   input.onchange = async ()=>{
     const f = input.files?.[0]; 
     if(!f) return;
+
+    let text="", data;
     try {
-      const text = await f.text(); 
-      const data = JSON.parse(text);
-
-      if(data && typeof data === 'object') {
-        // 🚫 不直接覆蓋
-        Object.entries(data).forEach(([name, val])=>{
-          if(!lists[name]) {
-            // 新標籤 → 直接新增
-            lists[name] = val;
-          } else {
-            // 舊標籤 → 合併 items
-            const exist = lists[name].items || [];
-            const incoming = val.items || [];
-            const keyOf = o => `${(o.title||'').trim()}::${(o.note||'').trim()}`;
-            const map = new Map(exist.map(x=>[keyOf(x), x]));
-            incoming.forEach(o=>{
-              const k = keyOf(o);
-              if(!map.has(k)) {
-                map.set(k, { ...o, id: uuid(), createdAt: Date.now() });
-              }
-            });
-            lists[name].items = Array.from(map.values());
-          }
-        });
-
-        saveLists();
-        renderHome();
-        alert('✅ 匯入完成（已合併，不會刪除原有清單）');
-      } else {
-        alert('⚠️ 格式不正確，沒有導入任何資料');
-      }
-    } catch(e) {
-      alert('❌ 匯入失敗：檔案不是有效的 JSON');
+      text = await f.text();
+      data = parseJsonLoose(text);
+    } catch (e) {
+      alert('❌ 匯入失敗：檔案不是有效的 JSON（已保留原有資料）');
+      return;
     }
+
+    // 兩種可能：A) {items:[...]} 單清單  B) { "超市":{items:...}, "藥局":{...} } 多清單
+    const clone = JSON.parse(JSON.stringify(lists)); // 建暫存，成功才覆蓋
+    const keyOf = o => `${(o.title||'').trim()}::${(o.note||'').trim()}`;
+
+    if (data && Array.isArray(data.items)) {
+      // 單清單匯入：問要放在哪個標籤
+      const name = prompt('將此清單匯入到哪個標籤？（可輸入新名稱）', Object.keys(clone)[0] || '我的清單');
+      if(!name) return;
+
+      if(!clone[name]) clone[name] = { items:[], staples:[] };
+      const exist = clone[name].items || [];
+      const map = new Map(exist.map(x=>[keyOf(x), x]));
+      (data.items||[]).forEach(o=>{
+        const k = keyOf(o);
+        if(!map.has(k)) map.set(k, { id:uuid(), title:o.title||'', note:o.note||'', checked:!!o.checked, createdAt:Date.now() });
+      });
+      clone[name].items = Array.from(map.values());
+
+    } else if (data && typeof data === 'object') {
+      // 多清單合併：逐標籤合併 items
+      Object.entries(data).forEach(([name, val])=>{
+        if(!val || !Array.isArray(val.items)) return;
+        if(!clone[name]) clone[name] = { items:[], staples:[] };
+        const exist = clone[name].items || [];
+        const map = new Map(exist.map(x=>[keyOf(x), x]));
+        (val.items||[]).forEach(o=>{
+          const k = keyOf(o);
+          if(!map.has(k)) map.set(k, { id:uuid(), title:o.title||'', note:o.note||'', checked:!!o.checked, createdAt:Date.now() });
+        });
+        clone[name].items = Array.from(map.values());
+      });
+    } else {
+      alert('⚠️ 格式不正確：需要 {"items":[...]} 或 {"清單名":{items:[...]},...}，已保留原有資料');
+      return;
+    }
+
+    // 成功 → 一次性覆蓋並重繪
+    lists = clone;
+    saveLists();
+    renderHome();
+    alert('✅ 匯入完成（以「合併」方式，不會刪除原有資料）');
   };
 
   input.click();
 });
+
 
 
 
@@ -503,26 +519,48 @@ $('#exportBtn').addEventListener('click', ()=>{
 
 $('#importBtn').addEventListener('click', ()=>{
   if(!current) return;
-  const input = document.createElement('input'); input.type='file'; input.accept='application/json';
+
+  const input = document.createElement('input');
+  input.type='file'; 
+  input.accept='application/json';
+
   input.onchange = async ()=>{
-    const f = input.files?.[0]; if(!f) return;
+    const f = input.files?.[0]; 
+    if(!f) return;
+
+    let text="", data;
     try{
-      const text = await f.text(); const data = JSON.parse(text);
-      if(data && Array.isArray(data.items)){
-        const exist = lists[current].items;
-        const keyOf = o=>`${(o.title||'').trim()}::${(o.note||'').trim()}`;
-        const map = new Map(exist.map(x=>[keyOf(x), x]));
-        data.items.forEach(o=>{
-          const k = keyOf(o);
-          if(!map.has(k)) map.set(k, { id:uuid(), title:o.title||'', note:o.note||'', checked:!!o.checked, createdAt:Date.now() });
-          // 不匯入照片（避免 JSON 超大；照片請進 App 內補）
-        });
-        lists[current].items = Array.from(map.values());
-        saveLists(); renderList(); alert('已匯入並合併（不包含照片）');
-      }else alert('格式不正確：需要 {"items":[...]}');
-    }catch{ alert('無法解析檔案'); }
-  }; input.click();
+      text = await f.text();
+      data = parseJsonLoose(text);
+    }catch{
+      alert('❌ 匯入失敗：檔案不是有效的 JSON（已保留原有資料）');
+      return;
+    }
+
+    // 支援 A) {items:[...]}  B) 直接就是 items 陣列
+    const incoming = Array.isArray(data) ? data : (Array.isArray(data.items) ? data.items : null);
+    if(!incoming){
+      alert('⚠️ 格式不正確：需要 {"items":[...]} 或 直接是陣列。');
+      return;
+    }
+
+    const exist = lists[current].items || [];
+    const keyOf = o=>`${(o.title||'').trim()}::${(o.note||'').trim()}`;
+    const map = new Map(exist.map(x=>[keyOf(x), x]));
+    incoming.forEach(o=>{
+      const k = keyOf(o);
+      if(!map.has(k)){
+        map.set(k, { id:uuid(), title:o.title||'', note:o.note||'', checked:!!o.checked, createdAt:Date.now() });
+      }
+    });
+    lists[current].items = Array.from(map.values());
+    saveLists(); renderList();
+    alert('✅ 已匯入並合併到目前清單（不包含照片）');
+  };
+
+  input.click();
 });
+
 
 /* =============== 日曆整合（.ics 匯出） =============== */
 $('#icsBtn').addEventListener('click', ()=>{
@@ -578,4 +616,5 @@ function escapeICS(s){
 
 /* ================== 啟動點 ================== */
 if(current===null) renderHome();
+
 
