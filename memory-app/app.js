@@ -178,18 +178,53 @@ $('#exportAllBtn').addEventListener('click', ()=>{
 
 // 全部匯入（合併）
 $('#importAllBtn').addEventListener('click', ()=>{
-  const input = document.createElement('input'); input.type='file'; input.accept='application/json';
+  const input = document.createElement('input'); 
+  input.type='file'; 
+  input.accept='application/json';
+
   input.onchange = async ()=>{
-    const f = input.files?.[0]; if(!f) return;
-    try{
-      const text = await f.text(); const data = JSON.parse(text);
-      if(data && typeof data==='object'){
-        // 簡單覆蓋（若要合併可再做 key 合併）
-        lists = data; saveLists(); renderHome();
-      }else alert('格式不正確');
-    }catch{ alert('無法解析檔案'); }
-  }; input.click();
+    const f = input.files?.[0]; 
+    if(!f) return;
+    try {
+      const text = await f.text(); 
+      const data = JSON.parse(text);
+
+      if(data && typeof data === 'object') {
+        // 🚫 不直接覆蓋
+        Object.entries(data).forEach(([name, val])=>{
+          if(!lists[name]) {
+            // 新標籤 → 直接新增
+            lists[name] = val;
+          } else {
+            // 舊標籤 → 合併 items
+            const exist = lists[name].items || [];
+            const incoming = val.items || [];
+            const keyOf = o => `${(o.title||'').trim()}::${(o.note||'').trim()}`;
+            const map = new Map(exist.map(x=>[keyOf(x), x]));
+            incoming.forEach(o=>{
+              const k = keyOf(o);
+              if(!map.has(k)) {
+                map.set(k, { ...o, id: uuid(), createdAt: Date.now() });
+              }
+            });
+            lists[name].items = Array.from(map.values());
+          }
+        });
+
+        saveLists();
+        renderHome();
+        alert('✅ 匯入完成（已合併，不會刪除原有清單）');
+      } else {
+        alert('⚠️ 格式不正確，沒有導入任何資料');
+      }
+    } catch(e) {
+      alert('❌ 匯入失敗：檔案不是有效的 JSON');
+    }
+  };
+
+  input.click();
 });
+
 
 
 /* ================== 清單頁 ================== */
@@ -543,3 +578,4 @@ function escapeICS(s){
 
 /* ================== 啟動點 ================== */
 if(current===null) renderHome();
+
