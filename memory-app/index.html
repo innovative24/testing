@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>記憶小本本｜多清單</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#2b7cff">
+</head>
+<body>
+<header>
+  <h1 id="title">🏷️ 標籤首頁</h1>
+
+  <!-- 首頁工具列 -->
+  <div class="bar" id="toolbarHome">
+    <button id="addListBtn" class="btn accent">＋ 新增標籤</button>
+    <span class="muted">長按標籤可「改名 / 刪除」</span>
+    <div class="spacer"></div>
+    <button id="exportAllBtn" class="btn">全部標籤匯出</button>
+    <button id="importAllBtn" class="btn">全部標籤匯入</button>
+  </div>
+
+  <!-- 清單頁工具列 -->
+  <div class="bar" id="toolbarList" hidden>
+    <button id="backBtn" class="btn">← 回首頁</button>
+    <div class="spacer"></div>
+    <input id="search" type="search" placeholder="搜尋項目或備註…">
+    <label class="btn chkbtn">
+      <input id="toggleBought" type="checkbox" checked> 顯示已買
+    </label>
+    <button id="sortModeBtn" class="btn">排序：自動</button>
+    <div class="split"></div>
+    <button id="exportBtn" class="btn">匯出本清單</button>
+    <button id="importBtn" class="btn">匯入到本清單</button>
+    <button id="icsBtn" class="btn">加到日曆</button>
+  </div>
+</header>
+
+<main>
+  <!-- 首頁：標籤牆 -->
+  <section id="home">
+    <div class="grid" id="tagGrid"></div>
+  </section>
+
+  <!-- 清單頁 -->
+  <section id="listPage" hidden>
+    <form id="addForm" class="panel">
+      <div class="row">
+        <input id="titleInput" type="text" placeholder="要買什麼？（例如：牛奶）" required>
+        <input id="noteInput" type="text" placeholder="備註（品牌、規格…）">
+      </div>
+      <div class="row">
+        <input id="photoInput" type="file" accept="image/*" capture="environment">
+        <button class="btn accent" type="submit">新增</button>
+      </div>
+      <div class="muted">照片會自動壓縮存入（節省空間）。</div>
+    </form>
+
+    <div class="list" id="itemList"></div>
+    <div class="empty" id="empty" hidden>目前沒有項目，先上面新增一個吧！</div>
+  </section>
+</main>
+
+<script src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+:root{
+  --bg:#fff; --fg:#111; --muted:#667085; --accent:#2b7cff; --line:#e9e9ef;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);padding:12px;z-index:10}
+h1{margin:0;font-size:20px;display:flex;align-items:center;gap:8px}
+.bar{display:flex;gap:8px;margin-top:8px;align-items:center;flex-wrap:wrap}
+.spacer{flex:1}
+.split{width:1px;height:28px;background:var(--line)}
+.btn{padding:10px 14px;border:1px solid var(--line);background:#f9f9f9;border-radius:10px;cursor:pointer}
+.btn.accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:active{transform:scale(.98)}
+.chkbtn{display:flex;align-items:center;gap:6px}
+
+main{padding:12px;max-width:960px;margin:0 auto}
+.muted{color:var(--muted);font-size:12px}
+
+/* 首頁：標籤牆 */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media (min-width:720px){ .grid{grid-template-columns:repeat(3,1fr)} }
+.tagcard{border:1px solid var(--line);border-radius:14px;background:#fff;padding:16px;display:flex;flex-direction:column;gap:6px;box-shadow:0 1px 0 rgba(0,0,0,.03);cursor:pointer}
+.tagcard h3{margin:0;font-size:18px}
+.tagcard .row{display:flex;justify-content:space-between;align-items:center}
+.tagmenu{border:1px solid var(--line);background:#f8f8f8;border-radius:8px;padding:6px 8px;cursor:pointer}
+
+/* 清單頁 */
+.panel{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fafafa;display:grid;gap:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row>*{flex:1}
+input[type="search"],input[type="text"]{padding:10px;border:1px solid var(--line);border-radius:10px;width:100%}
+
+.list{display:grid;gap:10px;margin-top:12px}
+.card{
+  display:grid;grid-template-columns:64px 1fr auto;gap:10px;align-items:center;
+  border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff;
+  box-shadow:0 1px 0 rgba(0,0,0,.03); transition:transform .08s ease, box-shadow .2s ease;
+}
+.card:active{transform:scale(.997)}
+.thumb{width:64px;height:64px;border-radius:8px;object-fit:cover;background:#f0f0f0;border:1px solid var(--line)}
+.title{margin:0 0 4px;font-weight:600}
+.note{margin:0;color:var(--muted);font-size:13px}
+.actions{display:flex;gap:6px;align-items:center}
+label.chk{display:flex;align-items:center;gap:8px}
+.empty{text-align:center;color:var(--muted);margin:24px 0}
+
+/* 滑動手勢視覺 */
+.card.swiping{ transition:none }
+.card.swipe-hint::after{
+  content:"向右完成 ✓ | 向左刪除 ✕";
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* 拖曳排序 */
+.card[draggable="true"]{ cursor:grab }
+.card.dragging{ opacity:.6; cursor:grabbing; box-shadow:0 6px 24px rgba(0,0,0,.12) }
+.card.drop-target{ outline:2px dashed var(--accent); outline-offset:-6px }
